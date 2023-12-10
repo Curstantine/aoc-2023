@@ -23,6 +23,8 @@ fn main() {
         .map(|(time, distance)| (0..*time).filter(|i| (time - *i) * *i > *distance).count())
         .product::<usize>();
 
+    let end = inst.elapsed();
+
     println!("{}", result);
-    println!("Time elapsed: {:?}", inst.elapsed());
+    println!("Time elapsed: {:?}", end);
 }
