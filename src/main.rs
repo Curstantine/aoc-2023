@@ -15,20 +15,14 @@ fn main() {
         })
         .collect::<Vec<_>>();
 
-    let times = &e[0];
-    let distances = &e[1];
+    let (times, distances) = e.split_at(1);
 
-    let mut result = 1;
-    for (time, distance) in times.iter().zip(distances) {
-        let mut chances = 0;
-        for i in 0..*time {
-            if (time - i) * i > *distance {
-                chances += 1;
-            }
-        }
-        result *= chances;
-    }
+    let result = times[0]
+        .iter()
+        .zip(distances[0].iter())
+        .map(|(time, distance)| (0..*time).filter(|i| (time - *i) * *i > *distance).count())
+        .product::<usize>();
 
-    println!("{result}");
-    println!("Time elapsed: {:?}", inst.elapsed())
+    println!("{}", result);
+    println!("Time elapsed: {:?}", inst.elapsed());
 }
