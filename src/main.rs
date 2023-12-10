@@ -4,14 +4,14 @@ fn main() {
     let inst = Instant::now();
     let inp = include_str!("../day6data.txt");
 
-    let e: Vec<Vec<u32>> = inp
+    let e: Vec<Vec<u16>> = inp
         .split_terminator(&['\n', '\r'])
         .filter(|e| !e.is_empty())
         .map(|e| {
             e.split(' ')
                 .filter(|e| !e.is_empty())
-                .filter_map(|e| e.parse::<u32>().ok())
-                .collect::<Vec<u32>>()
+                .filter_map(|e| e.parse::<u16>().ok())
+                .collect::<Vec<u16>>()
         })
         .collect::<Vec<_>>();
 
